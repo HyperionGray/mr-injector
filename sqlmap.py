@@ -69,7 +69,9 @@ def main():
 
         # Store original command line options for possible later restoration
         cmdLineOptions.update(cmdLineParser().__dict__)
+                
         initOptions(cmdLineOptions)
+
 
         if hasattr(conf, "api"):
             # Overwrite system standard output and standard error to write
@@ -147,6 +149,6 @@ def main():
         # Reference: http://stackoverflow.com/questions/1635080/terminate-a-multi-thread-python-program
         if conf.get("threads", 0) > 1 or conf.get("dnsServer"):
             os._exit(0)
-
+            
 if __name__ == "__main__":
     main()

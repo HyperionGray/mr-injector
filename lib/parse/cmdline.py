@@ -765,6 +765,7 @@ def cmdLineParser():
 
         try:
             (args, _) = parser.parse_args(args)
+            
         except SystemExit:
             if '-h' in sys.argv and not advancedHelp:
                 print "\n[!] to see full list of options run with '-hh'"
