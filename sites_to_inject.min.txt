@@ -1,0 +1,5 @@
+http://sqli1.hyperiongray.com/?user=root
+http://sqli2.hyperiongray.com/?user=root
+http://sqli3.hyperiongray.com/?user=root
+http://sqli4.hyperiongray.com/?user=root
+http://sqli5.hyperiongray.com/?user=root

