@@ -1,0 +1,7 @@
+./sqlmaparch/README.md
+./sqlmaparch/sqlmap.py
+./sqlmaparch/sqlmapapi.py
+./sqlmaparch/CONTRIBUTING.md
+./mapper.py
+./AGENTS.md
+./run_distributed_sqlmap.sh
